@@ -14,7 +14,7 @@ class DB {
             role.id AS ID,
             role.title AS Role,
             role.salary AS Salary,
-            department.name AS Department
+            department_id AS Department
         FROM
             role
         LEFT JOIN
@@ -39,6 +39,23 @@ class DB {
         );
         
     }
+
+    viewAllEmployees() {
+        return this.connection.query(
+        `
+        SELECT 
+            employee.id AS ID, 
+            employee.first_name AS 'First Name',
+            employee.last_name AS 'Last Name',
+            employee.role_id AS 'Role ID',
+            employee.manager_id AS 'Manager ID'
+        FROM 
+            employee;
+        `
+        );
+        
+    }
+
 };
 
 module.exports = new DB(connection);

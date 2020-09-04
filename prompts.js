@@ -7,7 +7,7 @@ module.exports = {
     name: "choice",
     choices: 
     [
-    "View all employees",
+    "View all roles",
     "View all departments",
     "View all employees",
     "Add department",
@@ -19,10 +19,22 @@ module.exports = {
 }],
 
 // The prompt for when the user chooses to add a new role
-newRolePrompt: [{
+newRolePrompt: [
+    {
     type: "input",
-    message: `Input a new role.`,
-    name: "newRole",
-}]
+    message: `Input a new role title.`,
+    name: "newRoleTitle",
+    }, 
+    {
+        type: "input",
+        message: `Input the salary of the new role.`,
+        name: "newRoleSalary",
+    },
+    {
+        type: "input",
+        message: `Input the department ID of the new role.`,
+        name: "newRoleID",
+    }
+]
 
 };
