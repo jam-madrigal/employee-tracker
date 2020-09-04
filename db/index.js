@@ -26,5 +26,9 @@ class DB {
         `
         );
     }
+
+    // next function goes here
 };
+
+module.exports = new DB(connection);
 
