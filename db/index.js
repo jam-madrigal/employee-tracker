@@ -2,32 +2,31 @@
 
 const connection = require('./connection');
 
-// module.exports = new DB(connection);
-
 class DB {
     constructor(connection) {
         this.connection = connection;
     }
 
-    viewAllTitles() {
+    viewAllRoles() {
         return this.connection.query(
         `
         SELECT
-            title.id,
-            title.name AS Title,
-            title.salary AS Salary,
+            role.id,
+            role.title AS Role,
+            role.salary AS Salary,
             department.name AS Department
         FROM
-            title
+            role
         LEFT JOIN
-            department ON title.department_id = department.id
+            department ON role.department_id = department.id
         ORDER BY
-            title.id;
+            role.id;
         `
         );
+        
     }
-
-    // next function goes here
+    
+    // The function that fetches the data to view all departments
 };
 
 module.exports = new DB(connection);
