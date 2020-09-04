@@ -15,6 +15,7 @@
 
 # Description
 This is a nodeJS application that can be used to play around with a database.
+![Screenshot](https://github.com/jam-madrigal/employee-tracker/blob/master/assets/cmd_2020-09-04_15-18-35.png?raw=true)
 
 # Usage
 Use this to view and interact with your database in the console. The screenshot above will list various functions.
