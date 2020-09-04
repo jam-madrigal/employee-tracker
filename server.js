@@ -4,9 +4,13 @@ const inquirer = require('inquirer');
 const connection = require('./db/connection');
 const mysql = require('mysql');
 const logo = require('asciiart-logo');
+const config = require('./package.json');
 const prompts = require('./prompts');
 const db = require('./db');
 require('console.table');
+
+// Making a cool logo in ascii art
+console.log(logo(config).render());
 
 // The function that displays all the employee titles (roles)
 async function viewAllRoles() {
@@ -30,6 +34,7 @@ async function viewAllDept() {
     mainPrompt();
 };
 
+// The function to view all employees
 async function viewAllEmployees() {
 
     const employs = await db.viewAllEmployees();
@@ -62,9 +67,10 @@ async function addNewRole() {
 
 };
 
+// Function to add a new department
 async function addNewDept() { 
     inquirer.prompt(prompts.newDeptPrompt).then((response) => {
-        // Store the responses in a variable then add them to the db as a new role
+        // Store the responses in a variable then add them to the db as a new department
         connection.query(
         `
         INSERT INTO department
@@ -81,9 +87,10 @@ async function addNewDept() {
 
 };
 
+// Function to add a new employee
 async function addNewEmployee() { 
     inquirer.prompt(prompts.newEmployeePrompt).then((response) => {
-        // Store the responses in a variable then add them to the db as a new role
+        // Store the responses in a variable then add them to the db as a new employee
         connection.query(
         `
         INSERT INTO employee
@@ -100,9 +107,10 @@ async function addNewEmployee() {
 
 };
 
+// Function to update an employee's role ID
 async function updateEmployeeRole() { 
     inquirer.prompt(prompts.updateRolePrompt).then((response) => {
-        // Store the responses in a variable then add them to the db as a new role
+        // Store the responses in a variable then use them to update a role ID for the chosen employee ID
         connection.query(
         `
         UPDATE employee
