@@ -18,6 +18,15 @@ async function viewAllRoles() {
 };
 
 // The function to view all departments
+async function viewAllDept() {
+
+    const depts = await db.viewAllDept();
+
+    console.log('/n');
+    console.table(depts);
+
+    mainPrompt();
+};
 
 
 
@@ -36,13 +45,12 @@ function mainPrompt() {
     .then((answer) => {
         switch (answer.choice) {
             case "View all employees":
-            console.log("view employees function goes here")
             viewAllRoles()
             break;
         
-            case "View all employees by department":
+            case "View all departments":
             console.log("view employees by department function happens")
-
+            viewAllDept();
             break;
     
             case "View all employees by role":

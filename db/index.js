@@ -11,7 +11,7 @@ class DB {
         return this.connection.query(
         `
         SELECT
-            role.id,
+            role.id AS ID,
             role.title AS Role,
             role.salary AS Salary,
             department.name AS Department
@@ -27,6 +27,18 @@ class DB {
     }
     
     // The function that fetches the data to view all departments
+    viewAllDept() {
+        return this.connection.query(
+        `
+        SELECT 
+            department.id AS ID, 
+            department.name AS Name 
+        FROM 
+            department;
+        `
+        );
+        
+    }
 };
 
 module.exports = new DB(connection);

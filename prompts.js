@@ -8,8 +8,8 @@ module.exports = {
     choices: 
     [
     "View all employees",
-    "View all employees by department",
-    "View all employees by role",
+    "View all departments",
+    "View all employees",
     "Add department",
     "Add role",
     "Add employee",
