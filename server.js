@@ -62,6 +62,62 @@ async function addNewRole() {
 
 };
 
+async function addNewDept() { 
+    inquirer.prompt(prompts.newDeptPrompt).then((response) => {
+        // Store the responses in a variable then add them to the db as a new role
+        connection.query(
+        `
+        INSERT INTO department
+            (name)
+        VALUES
+            ('${response.newDeptName}');
+        `
+        );
+
+        console.log("New department added successfully.")  
+
+        return mainPrompt();
+    });
+
+};
+
+async function addNewEmployee() { 
+    inquirer.prompt(prompts.newEmployeePrompt).then((response) => {
+        // Store the responses in a variable then add them to the db as a new role
+        connection.query(
+        `
+        INSERT INTO employee
+            (first_name, last_name, role_id, manager_id)
+        VALUES
+            ('${response.employeeName}', '${response.employeeLastName}', '${response.employeeRoleID}', '${response.employeeManagerID}');
+        `
+        );
+
+        console.log("New employee added successfully.")  
+
+        return mainPrompt();
+    });
+
+};
+
+async function updateEmployeeRole() { 
+    inquirer.prompt(prompts.updateRolePrompt).then((response) => {
+        // Store the responses in a variable then add them to the db as a new role
+        connection.query(
+        `
+        UPDATE employee
+        SET role_id = '${response.updatedRoleID}'
+        WHERE employee.id = '${response.chosenID}';
+        `
+        );
+
+        console.log("Employee's role has been updated.")  
+
+        return mainPrompt();
+    });
+
+};
+
 // A switch function that chooses what to do next based on inquirer selections, all functions will then update or display the db as indicated and then call back the mainPrompt()
 function mainPrompt() {
     inquirer   
@@ -81,7 +137,7 @@ function mainPrompt() {
             break;
 
             case "Add department":
-            console.log("add department function happens")
+            addNewDept();
             break;
 
             case "Add role":
@@ -89,11 +145,11 @@ function mainPrompt() {
             break;
 
             case "Add employee":
-            console.log("add employee function happens")
+            addNewEmployee();
             break;
 
             case "Update employee role":
-            console.log("update employee role function happens")
+            updateEmployeeRole();
             break;
 
             case "Quit":
